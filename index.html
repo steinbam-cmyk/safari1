@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Time Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>Time Management</h1>
+      <p class="summary" id="summary"></p>
+    </header>
+
+    <form id="task-form" class="task-form" autocomplete="off">
+      <input type="hidden" id="task-id">
+      <input id="task-title" class="title-input" type="text" placeholder="What do you need to do?" required maxlength="200">
+      <div class="form-row">
+        <label>Due
+          <input id="task-due" type="date">
+        </label>
+        <label>Priority
+          <select id="task-priority">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+        </label>
+      </div>
+      <textarea id="task-notes" rows="2" placeholder="Notes (optional)" maxlength="2000"></textarea>
+      <div class="form-actions">
+        <button type="submit" id="submit-btn" class="primary">Add task</button>
+        <button type="button" id="cancel-edit" class="ghost" hidden>Cancel</button>
+      </div>
+    </form>
+
+    <section class="toolbar">
+      <nav class="filters" id="filters" aria-label="Filter tasks">
+        <button type="button" data-filter="all" class="active">All</button>
+        <button type="button" data-filter="today">Today</button>
+        <button type="button" data-filter="upcoming">Upcoming</button>
+        <button type="button" data-filter="overdue">Overdue</button>
+        <button type="button" data-filter="done">Done</button>
+      </nav>
+      <div class="toolbar-row">
+        <input id="search" type="search" placeholder="Search tasks">
+        <select id="sort" aria-label="Sort tasks">
+          <option value="due">Sort by due date</option>
+          <option value="priority">Sort by priority</option>
+          <option value="created">Sort by newest</option>
+        </select>
+      </div>
+    </section>
+
+    <ul id="task-list" class="task-list"></ul>
+    <p id="empty" class="empty" hidden>No tasks here.</p>
+
+    <footer class="app-footer">
+      <button type="button" id="export-btn" class="ghost">Export</button>
+      <label class="ghost file-btn">Import
+        <input type="file" id="import-file" accept="application/json" hidden>
+      </label>
+      <button type="button" id="clear-done" class="ghost">Clear completed</button>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
